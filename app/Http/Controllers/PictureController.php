@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use App\Models\Picture;
 
 class PictureController extends Controller
@@ -38,7 +39,19 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        // See PictureControllerTest to see what this should do
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $file = $request->image;
+        $dogName = $request->get('name');
+        $hashedName = $file->hashName();
+
+        DB::insert('insert into pictures (name, file_path, votes) values (?, ?, ?)', [$dogName, $hashedName, 0]);
+
+        $file->move(storage_path('app/public/'), $hashedName);
+
+        return redirect('/', 302);
     }
 
     /**
@@ -49,6 +62,6 @@ class PictureController extends Controller
      */
     public function upvote(Request $request, Picture $picture)
     {
-        
+
     }
 }
