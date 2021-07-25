@@ -46,8 +46,9 @@ class PictureController extends Controller
         $file = $request->image;
         $dogName = $request->get('name');
         $hashedName = $file->hashName();
+        $picture = new Picture(['name' => $dogName, 'file_path' => $hashedName]);
 
-        DB::insert('insert into pictures (name, file_path, votes) values (?, ?, ?)', [$dogName, $hashedName, 0]);
+        $picture->save();
 
         $file->move(storage_path('app/public/'), $hashedName);
 
@@ -62,6 +63,9 @@ class PictureController extends Controller
      */
     public function upvote(Request $request, Picture $picture)
     {
+        $picture->votes ++;
+        $picture->save();
 
+        return redirect('/', 302);
     }
 }

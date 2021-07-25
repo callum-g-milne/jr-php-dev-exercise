@@ -25,7 +25,7 @@
         </style>
     </head>
     <body class="bg-gray-100">
-        
+
         <div class="container px-24 mt-8 mx-auto">
             <header class="flex items-center mb-12">
                 <h1 class="text-6xl">The Dog House</h1>
