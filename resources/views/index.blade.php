@@ -11,7 +11,7 @@
             <p class="mt-2 text-gray-500">{{ $picture->votes }} votes</p>
             <form method="post"  action="{{ route('pictures.upvote', $picture->id) }}">
                 @csrf
-                <button class="btn">Upvote</button>
+                <button class="ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upvote</button>
             </form>
         </div>
     </div>

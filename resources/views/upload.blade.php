@@ -12,7 +12,7 @@
         <input type="text" class="entry-text" name="name" required>
         <input type="file" name="image" id="image" required>
         <br>
-        <button type="submit" class="btn">Upload</button>
+        <button type="submit" class="ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload</button>
     </form>
 </div>
 
